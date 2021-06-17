@@ -19,23 +19,27 @@ const FarmListing = (props) => {
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 <Grid container>
-                    <Grid item xs={2}>
-                        <h1>Address</h1>
+                    <Grid item xs={8}>
+                        <h1>Address Maple drive</h1>
                     </Grid>
-                    <Grid item xs={2}>
-                        worth
-                    </Grid>
-                    <Grid item xs={2}>
-                        stock
-                    </Grid>
-                    <Grid item xs={2}>
-                        investment return
-                    </Grid>
-                    <Grid item xs={2}>
-                        current price
-                    </Grid>
-                    <Grid item xs={2}>
-                        select btn
+                    <Grid item xs={4}>
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <h2>73.32$ Total Owned</h2>
+                            </Grid>
+                            <Grid item xs={12}>
+                                1.54 Stock
+                            </Grid>
+                            <Grid item xs={12}>
+                                34% Up
+                            </Grid>
+                            <Grid item xs={12}>
+                                Currently 2.5$
+                            </Grid>
+                            <Grid item xs={12}>
+                                select btn
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Paper>
