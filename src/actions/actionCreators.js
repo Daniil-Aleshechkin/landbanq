@@ -7,7 +7,7 @@ export function buyStock(id, amountBought) {
     };
 }
 
-export function buyStock(id, amountSold) {
+export function sellStock(id, amountSold) {
     return {
         type: ACTION_TYPES.SELL_MYPROPERTY_STOCK,
         payload: { id, amountSold },

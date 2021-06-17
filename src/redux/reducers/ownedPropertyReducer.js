@@ -1,6 +1,6 @@
 import * as ACTION_TYPES from "../../actions/actionTypes";
 
-const initialState = { ownedProperties: [], myWallet: {} };
+const initialState = { ownedProperties: [], myWallet: { data: "Hi" } };
 
 export default function ownedPropertyReducer(state = initialState, action) {
     switch (action.type) {
@@ -47,5 +47,7 @@ export default function ownedPropertyReducer(state = initialState, action) {
                 },
             };
         }
+        default:
+            return state;
     }
 }
