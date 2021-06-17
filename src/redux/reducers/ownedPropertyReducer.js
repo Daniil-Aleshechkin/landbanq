@@ -10,19 +10,30 @@ const initialState = {
             currentPrice: 2540,
             investmentReturn: 25,
         },
+        {
+            id: 2,
+            address: "120 Maple Street",
+            stock: 7.78,
+            totalWorth: 26500,
+            currentPrice: 2540,
+            investmentReturn: 25,
+        },
     ],
-    myWallet: { data: "Hi" },
+    myWallet: { funds: 15000 },
 };
 
 export default function ownedPropertyReducer(state = initialState, action) {
     switch (action.type) {
         case ACTION_TYPES.BUY_MYPROPERTY_STOCK: {
+            console.log(action.payload);
             return {
                 ...state,
                 ownedProperties: state.ownedProperties.map((property) =>
                     property.id === action.payload.id
                         ? {
                               ...property,
+                              totalWorth:
+                                  property.totalWorth + property.currentPrice,
                               stock:
                                   property.stock + action.payload.amountBought,
                           }
@@ -45,6 +56,8 @@ export default function ownedPropertyReducer(state = initialState, action) {
                     property.id === action.payload.id
                         ? {
                               ...property,
+                              totalWorth:
+                                  property.totalWorth - property.currentPrice,
                               stock: property.stock - action.payload.amountSold,
                           }
                         : property

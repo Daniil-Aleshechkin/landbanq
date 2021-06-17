@@ -7,9 +7,13 @@ const FarmListings = (props) => {
     return (
         <div>
             {props.ownedProperties.map((ownedProperty) => {
-                return <FarmListing ownedProperty={ownedProperty} />;
+                return (
+                    <FarmListing
+                        key={ownedProperty.id}
+                        ownedProperty={ownedProperty}
+                    />
+                );
             })}
-            {console.log(props.ownedProperties)}
         </div>
     );
 };

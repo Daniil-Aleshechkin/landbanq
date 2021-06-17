@@ -20,24 +20,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 const FarmListing = ({ ownedProperty }) => {
     const classes = useStyles();
+
+    const formatMoney = (money) => {
+        return money.toFixed(2);
+    };
+    const formatPercentage = (percentage) => {
+        return percentage.toFixed(1);
+    };
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 <Grid container alignContent="center" alignItems="center">
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={5}>
                         <h1 className={""}>{ownedProperty.address}</h1>
                     </Grid>
-                    <Grid item xs={3} sm={1}>
-                        <h2>{ownedProperty.totalWorth}$</h2>
+                    <Grid item xs={3} sm={2}>
+                        <h2>{formatMoney(ownedProperty.totalWorth)}$</h2>
                     </Grid>
                     <Grid item xs={3} sm={1}>
-                        {ownedProperty.stock}
+                        {formatMoney(ownedProperty.stock)}
                     </Grid>
                     <Grid item xs={3} sm={1}>
-                        {ownedProperty.investmentReturn}%
+                        {formatPercentage(ownedProperty.investmentReturn)}%
                     </Grid>
                     <Grid item xs={3} sm={1}>
-                        {ownedProperty.currentPrice}$
+                        {formatMoney(ownedProperty.currentPrice)}$
                     </Grid>
 
                     <Grid item xs={3} sm={1}></Grid>
