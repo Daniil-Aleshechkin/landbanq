@@ -1,7 +1,7 @@
 import * as ACTION_TYPES from "../../actions/actionTypes";
 
 import img1 from "./wm_large.png";
-import img2 from "./Property-23090354-LargePhoto-1.png";
+import img2 from "./Screenshot from 2021-06-17 14-12-11.png";
 
 const initialState = {
     ownedProperties: [
@@ -21,7 +21,7 @@ const initialState = {
             totalWorth: 35600,
             currentPrice: 6540,
             investmentReturn: -15,
-            img: img1,
+            img: img2,
         },
     ],
     myWallet: { funds: 15000 },
