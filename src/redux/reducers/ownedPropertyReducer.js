@@ -5,10 +5,10 @@ const initialState = {
         {
             id: 0,
             address: "120 Maple Street",
-            stock: 2,
-            totalWorth: 2000,
+            stock: 7.78,
+            totalWorth: 26500,
             currentPrice: 2540,
-            investmentReturn: -45,
+            investmentReturn: 25,
         },
     ],
     myWallet: { data: "Hi" },

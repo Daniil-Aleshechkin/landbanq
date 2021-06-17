@@ -7,7 +7,7 @@ const FarmListings = (props) => {
     return (
         <div>
             {props.ownedProperties.map((ownedProperty) => {
-                return <FarmListing />;
+                return <FarmListing ownedProperty={ownedProperty} />;
             })}
             {console.log(props.ownedProperties)}
         </div>
