@@ -1,8 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import FarmListing from "./FarmListing";
+
 const FarmListings = (props) => {
-    return <div>{JSON.stringify(props.ownedProperties)}</div>;
+    return (
+        <div>
+            {props.ownedProperties.map((ownedProperty) => {
+                return <FarmListing />;
+            })}
+            {console.log(props.ownedProperties)}
+        </div>
+    );
 };
 
 const mapStateToProps = (state) => ({

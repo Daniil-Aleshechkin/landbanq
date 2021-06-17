@@ -2,9 +2,24 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import * as ApexCharts from "child_process";
 import { connect } from "react-redux";
+import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 import * as actions from "./../actions/actionCreators";
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        margin: theme.spacing(2),
+        textAlign: "left",
+        color: theme.palette.text.secondary,
+    },
+}));
+
 const WalletValue = (props) => {
+    const classes = useStyles();
     const ApexCharts = window.ApexCharts;
     const series = [
         {
@@ -447,16 +462,17 @@ const WalletValue = (props) => {
                     ALL
                 </button>
             </div>
-
-            <div id="chart-timeline">
-                <ReactApexChart
-                    options={options}
-                    series={series}
-                    type="area"
-                    height={350}
-                />
-                {console.log(props.wallet)}
-            </div>
+            <Paper className={classes.paper}>
+                <div id="chart-timeline">
+                    <ReactApexChart
+                        options={options}
+                        series={series}
+                        type="area"
+                        height={350}
+                    />
+                    {console.log(props.wallet)}
+                </div>
+            </Paper>
         </div>
     );
 };
