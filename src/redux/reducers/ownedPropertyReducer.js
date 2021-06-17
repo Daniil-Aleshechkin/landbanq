@@ -47,6 +47,18 @@ export default function ownedPropertyReducer(state = initialState, action) {
                 },
             };
         }
+        case ACTION_TYPES.GET_MYPROPERTY_DATA: {
+            return {
+                ...state,
+                ownedProperties: action.payload.ownedProperties,
+            };
+        }
+        case ACTION_TYPES.GET_MYWALLET_DATA: {
+            return {
+                ...state,
+                myWallet: action.payload.myWallet,
+            };
+        }
         default:
             return state;
     }
