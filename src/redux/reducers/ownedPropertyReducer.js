@@ -1,22 +1,27 @@
 import * as ACTION_TYPES from "../../actions/actionTypes";
 
+import img1 from "./wm_large.png";
+import img2 from "./Property-23090354-LargePhoto-1.png";
+
 const initialState = {
     ownedProperties: [
         {
             id: 0,
-            address: "SE-12-20-33-W1,",
+            address: "SE-12-20-33-W1",
             stock: 7.78,
             totalWorth: 26500,
             currentPrice: 2540,
             investmentReturn: 25,
+            img: img1,
         },
         {
             id: 2,
-            address: "120 Maple Street",
-            stock: 7.78,
-            totalWorth: 26500,
-            currentPrice: 2540,
-            investmentReturn: 25,
+            address: "SE-53-10-23-W1",
+            stock: 5.78,
+            totalWorth: 35600,
+            currentPrice: 6540,
+            investmentReturn: -15,
+            img: img1,
         },
     ],
     myWallet: { funds: 15000 },

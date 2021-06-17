@@ -18,16 +18,12 @@ export const buyStock = (ownedProperty, amountBought) => (dispatch) => {
     //         console.log(err);
     //     });
 
-    console.log(
-        api.ownedProperty.update(ownedProperty.id, {
-            ...ownedProperty,
-            stock: ownedProperty.stock + amountBought,
-        })
-    );
+    console.log("FCUNTOINSADF");
     api.ownedProperty.update(ownedProperty.id, {
         ...ownedProperty,
         stock: ownedProperty.stock + amountBought,
     });
+    console.log(dispatch);
     dispatch({
         type: ACTION_TYPES.BUY_MYPROPERTY_STOCK,
         payload: { id: ownedProperty.id, amountBought },

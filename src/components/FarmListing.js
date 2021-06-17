@@ -1,11 +1,26 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+
+import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+
 import Button from "@material-ui/core/Button";
+import MuiAccordion from "@material-ui/core/Accordion";
+import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
+import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+import * as actions from "./../actions/actionCreators";
+import { props } from "bluebird";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        "& .MuiTextField-root": {
+            margin: theme.spacing(1),
+            width: "25ch",
+        },
     },
     paper: {
         padding: theme.spacing(2),
@@ -15,10 +30,67 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         alignItems: "center",
+        margin: theme.spacing(1),
         justifyContent: "center",
     },
 }));
-const FarmListing = ({ ownedProperty }) => {
+
+const Accordion = withStyles({
+    root: {
+        border: "1px solid rgba(0, 0, 0, .125)",
+        boxShadow: "none",
+        "&:not(:last-child)": {
+            borderBottom: 0,
+        },
+        "&:before": {
+            display: "none",
+        },
+        "&$expanded": {
+            margin: "auto",
+        },
+    },
+    expanded: {},
+})(MuiAccordion);
+
+const AccordionSummary = withStyles({
+    root: {
+        backgroundColor: "rgba(0, 0, 0, .03)",
+        borderBottom: "1px solid rgba(0, 0, 0, .125)",
+        marginBottom: -1,
+        minHeight: 56,
+        "&$expanded": {
+            minHeight: 56,
+        },
+    },
+    content: {
+        "&$expanded": {
+            margin: "12px 0",
+        },
+    },
+    expanded: {},
+})(MuiAccordionSummary);
+
+const AccordionDetails = withStyles((theme) => ({
+    root: {
+        padding: theme.spacing(2),
+    },
+}))(MuiAccordionDetails);
+
+const FarmListing = (props) => {
+    const [expanded, setExpanded] = React.useState("panel1");
+
+    const [stockValues, setStockValues] = React.useState(0);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        setStockValues(value);
+    };
+
+    const handleChange = (panel) => (event, newExpanded) => {
+        setExpanded(newExpanded ? panel : false);
+    };
+
     const classes = useStyles();
 
     const formatMoney = (money) => {
@@ -27,41 +99,114 @@ const FarmListing = ({ ownedProperty }) => {
     const formatPercentage = (percentage) => {
         return percentage.toFixed(1);
     };
+
+    const handleBuy = (amount) => {
+        props.buyStock({ ...props.ownedProperty }, amount);
+    };
+    const handleSell = (amount) => {
+        props.sellStock({ ...props.ownedProperty }, amount);
+    };
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
-                <Grid container alignContent="center" alignItems="center">
-                    <Grid item xs={12} sm={5}>
-                        <h1 className={""}>{ownedProperty.address}</h1>
-                    </Grid>
-                    <Grid item xs={3} sm={2}>
-                        <h2>{formatMoney(ownedProperty.totalWorth)}$</h2>
-                    </Grid>
-                    <Grid item xs={3} sm={1}>
-                        {formatMoney(ownedProperty.stock)}
-                    </Grid>
-                    <Grid item xs={3} sm={1}>
-                        {formatPercentage(ownedProperty.investmentReturn)}%
-                    </Grid>
-                    <Grid item xs={3} sm={1}>
-                        {formatMoney(ownedProperty.currentPrice)}$
-                    </Grid>
+            <Accordion
+                square
+                expanded={expanded === "panel1"}
+                onChange={handleChange("panel1")}
+            >
+                <AccordionSummary
+                    aria-controls="panel1d-content"
+                    id="panel1d-header"
+                >
+                    <Grid container alignContent="center" alignItems="center">
+                        <Grid item xs={12} sm={5}>
+                            <h1 className={""}>
+                                {props.ownedProperty.address}
+                            </h1>
+                        </Grid>
+                        <Grid item xs={3} sm={2}>
+                            <h2>
+                                {formatMoney(props.ownedProperty.totalWorth)}C
+                            </h2>
+                        </Grid>
+                        <Grid item xs={3} sm={1}>
+                            {formatMoney(props.ownedProperty.stock)}
+                        </Grid>
+                        <Grid item xs={3} sm={1}>
+                            {formatPercentage(
+                                props.ownedProperty.investmentReturn
+                            )}
+                            %
+                        </Grid>
+                        <Grid item xs={3} sm={1}>
+                            {formatMoney(props.ownedProperty.currentPrice)}C
+                        </Grid>
 
-                    <Grid item xs={3} sm={1}></Grid>
-                    <Grid item xs={12} sm={1}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.button}
-                            fullWidth
-                        >
-                            Select
-                        </Button>
+                        <Grid item xs={3} sm={1}></Grid>
                     </Grid>
-                </Grid>
-            </Paper>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Grid container>
+                        <Grid item xs={12} md={6}>
+                            <img src={props.ownedProperty.img} alt="farm" />
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            <form
+                                className={classes.root}
+                                noValidate
+                                autoComplete="off"
+                            >
+                                <Grid container>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            id="outlined-number"
+                                            fullWidth
+                                            label="Number"
+                                            type="number"
+                                            variant="outlined"
+                                            onChange={handleInputChange}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Button
+                                            variant="contained"
+                                            className={classes.button}
+                                            fullWidth
+                                            onClick={() => {
+                                                handleBuy(stockValues);
+                                            }}
+                                            color="primary"
+                                        >
+                                            <h3>BUY</h3>
+                                        </Button>
+                                        <Button
+                                            variant="contained"
+                                            className={classes.button}
+                                            fullWidth
+                                            onClick={() => {
+                                                handleSell(stockValues);
+                                            }}
+                                            color="primary"
+                                        >
+                                            <h3>Sell</h3>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </form>
+                        </Grid>
+                    </Grid>
+                </AccordionDetails>
+            </Accordion>
         </div>
     );
 };
 
-export default FarmListing;
+const mapActionsToProps = (state) => {
+    console.log(state);
+    return {
+        buyStock: actions.buyStock,
+        sellStock: actions.sellStock,
+    };
+};
+
+export default connect(mapActionsToProps)(FarmListing);
