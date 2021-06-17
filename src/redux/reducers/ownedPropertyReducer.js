@@ -1,6 +1,18 @@
 import * as ACTION_TYPES from "../../actions/actionTypes";
 
-const initialState = { ownedProperties: [], myWallet: { data: "Hi" } };
+const initialState = {
+    ownedProperties: [
+        {
+            id: 0,
+            address: "120 Maple Street",
+            stock: 2,
+            totalWorth: 2000,
+            currentPrice: 2540,
+            investmentReturn: -45,
+        },
+    ],
+    myWallet: { data: "Hi" },
+};
 
 export default function ownedPropertyReducer(state = initialState, action) {
     switch (action.type) {

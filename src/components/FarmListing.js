@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const FarmListing = ({id,}) => {
-    return ( null );
-}
- 
+const FarmListing = (props) => {
+    return <div></div>;
+};
+
 export default FarmListing;
