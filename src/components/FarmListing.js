@@ -77,7 +77,7 @@ const AccordionDetails = withStyles((theme) => ({
 }))(MuiAccordionDetails);
 
 const FarmListing = (props) => {
-    const [expanded, setExpanded] = React.useState("panel1");
+    const [expanded, setExpanded] = React.useState("panel0");
 
     const [stockValues, setStockValues] = React.useState(0);
 
