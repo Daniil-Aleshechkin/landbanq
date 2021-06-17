@@ -123,25 +123,23 @@ const FarmListing = (props) => {
                                 {props.ownedProperty.address}
                             </h1>
                         </Grid>
-                        <Grid item xs={3} sm={2}>
+                        <Grid item xs={6} sm={2}>
                             <h2>
                                 {formatMoney(props.ownedProperty.totalWorth)}C
                             </h2>
                         </Grid>
-                        <Grid item xs={3} sm={1}>
+                        <Grid item xs={2} sm={1}>
                             {formatMoney(props.ownedProperty.stock)}
                         </Grid>
-                        <Grid item xs={3} sm={1}>
+                        <Grid item xs={2} sm={1}>
                             {formatPercentage(
                                 props.ownedProperty.investmentReturn
                             )}
                             %
                         </Grid>
-                        <Grid item xs={3} sm={1}>
+                        <Grid item xs={2} sm={1}>
                             {formatMoney(props.ownedProperty.currentPrice)}C
                         </Grid>
-
-                        <Grid item xs={3} sm={1}></Grid>
                     </Grid>
                 </AccordionSummary>
                 <AccordionDetails>
