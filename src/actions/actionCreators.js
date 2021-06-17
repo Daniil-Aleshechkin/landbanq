@@ -2,7 +2,7 @@ import * as ACTION_TYPES from "./actionTypes";
 
 import api from "./api";
 
-export const buyStock = (ownedProperty, amountBought) => (dispatch) => {
+export const buyStock = (dispatch) => (ownedProperty, amountBought) => {
     // api.ownedProperty
     //     .update(ownedProperty.id, {
     //         ...ownedProperty,
@@ -18,19 +18,17 @@ export const buyStock = (ownedProperty, amountBought) => (dispatch) => {
     //         console.log(err);
     //     });
 
-    console.log("FCUNTOINSADF");
     api.ownedProperty.update(ownedProperty.id, {
         ...ownedProperty,
         stock: ownedProperty.stock + amountBought,
     });
-    console.log(dispatch);
     dispatch({
         type: ACTION_TYPES.BUY_MYPROPERTY_STOCK,
         payload: { id: ownedProperty.id, amountBought },
     });
 };
 
-export const sellStock = (ownedProperty, amountSold) => (dispatch) => {
+export const sellStock = (dispatch) => (ownedProperty, amountSold) => {
     // api.ownedProperty
     //     .update(ownedProperty.id, {
     //         ...ownedProperty,

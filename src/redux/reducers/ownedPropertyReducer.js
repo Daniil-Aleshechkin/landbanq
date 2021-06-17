@@ -30,7 +30,33 @@ const initialState = {
 export default function ownedPropertyReducer(state = initialState, action) {
     switch (action.type) {
         case ACTION_TYPES.BUY_MYPROPERTY_STOCK: {
-            console.log(action.payload);
+            console.log({
+                ...state,
+                ownedProperties: state.ownedProperties.map((property) =>
+                    property.id === action.payload.id
+                        ? {
+                              ...property,
+                              totalWorth:
+                                  parseFloat(property.totalWorth) +
+                                  parseFloat(property.currentPrice),
+                              stock:
+                                  parseFloat(property.stock) +
+                                  parseFloat(action.payload.amountBought),
+                          }
+                        : property
+                ),
+                myWallet: {
+                    funds:
+                        state.myWallet.funds -
+                        parseFloat(action.payload.amountBought) *
+                            parseFloat(
+                                state.ownedProperties.find(
+                                    (property) =>
+                                        action.payload.id === property.id
+                                ).currentPrice
+                            ),
+                },
+            });
             return {
                 ...state,
                 ownedProperties: state.ownedProperties.map((property) =>
@@ -38,19 +64,24 @@ export default function ownedPropertyReducer(state = initialState, action) {
                         ? {
                               ...property,
                               totalWorth:
-                                  property.totalWorth + property.currentPrice,
+                                  parseFloat(property.totalWorth) +
+                                  parseFloat(property.currentPrice),
                               stock:
-                                  property.stock + action.payload.amountBought,
+                                  parseFloat(property.stock) +
+                                  parseFloat(action.payload.amountBought),
                           }
                         : property
                 ),
                 myWallet: {
                     funds:
                         state.myWallet.funds -
-                        action.payload.amountBought *
-                            state.ownedProperties.find(
-                                (property) => action.payload.id === property.id
-                            ).currentPrice,
+                        parseFloat(action.payload.amountBought) *
+                            parseFloat(
+                                state.ownedProperties.find(
+                                    (property) =>
+                                        action.payload.id === property.id
+                                ).currentPrice
+                            ),
                 },
             };
         }

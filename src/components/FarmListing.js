@@ -94,10 +94,10 @@ const FarmListing = (props) => {
     const classes = useStyles();
 
     const formatMoney = (money) => {
-        return money.toFixed(2);
+        return parseFloat(money).toFixed(2);
     };
     const formatPercentage = (percentage) => {
-        return percentage.toFixed(1);
+        return parseFloat(percentage).toFixed(1);
     };
 
     const handleBuy = (amount) => {
@@ -201,12 +201,11 @@ const FarmListing = (props) => {
     );
 };
 
-const mapActionsToProps = (state) => {
-    console.log(state);
+const mapActionsToProps = (dispatch) => {
     return {
-        buyStock: actions.buyStock,
-        sellStock: actions.sellStock,
+        buyStock: actions.buyStock(dispatch),
+        sellStock: actions.sellStock(dispatch),
     };
 };
 
-export default connect(mapActionsToProps)(FarmListing);
+export default connect(null, mapActionsToProps)(FarmListing);
