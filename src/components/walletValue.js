@@ -2,8 +2,7 @@ import React from "react";
 import ReactApexChart from 'react-apexcharts';
 import * as ApexCharts from "child_process";
 
-const WalletValue =(props)=> {
-
+const WalletValue =(props)=> {const ApexCharts = window.ApexCharts;
 const series= [{
         data: [
             [1327359600000,30.95],
