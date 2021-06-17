@@ -1,18 +1,32 @@
 import axios from "axios";
 
-const baseURL = "";
+const baseURL = "http://localhost:3000/";
 
+// export default {
+//     ownedProperty(url = baseURL + "property/") {
+//         return {
+//             fetchAll: () => axios.get(url),
+//             update: (id, updatedProperty) =>
+//                 axios.put(url + id, updatedProperty),
+//         };
+//     },
+//     wallet(url = baseURL + "wallet/") {
+//         return {
+//             fetch: () => axios.get(url),
+//         };
+//     },
+// };
 export default {
-    ownedProperty(url = baseURL + "property/") {
+    ownedProperty: ((url = baseURL + "property/") => {
         return {
-            fetchAll: () => axios.get(url),
+            fetchAll: () => console.log(url),
             update: (id, updatedProperty) =>
-                axios.put(url + id, updatedProperty),
+                console.log(url + id, updatedProperty),
         };
-    },
-    wallet(url = baseURL + "wallet/") {
+    })(),
+    wallet: ((url = baseURL + "wallet/") => {
         return {
-            fetch: () => axios.get(url),
+            fetch: () => console.log(url),
         };
-    },
+    })(),
 };

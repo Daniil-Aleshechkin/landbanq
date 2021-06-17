@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 import * as ApexCharts from "child_process";
 import { connect } from "react-redux";
@@ -20,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
 
 const WalletValue = (props) => {
     const classes = useStyles();
+
+    useEffect(() => {
+        props.fetchAllWalletData();
+    }, []);
+
     const ApexCharts = window.ApexCharts;
     const series = [
         {
@@ -481,8 +486,8 @@ const mapStateToProps = (state) => ({
     wallet: state.ownedPropertyReducer.myWallet,
 });
 
-// const mapActionsToProps = (state) => ({
-//     fetchAllWalletData: actions.fetchAllWalletData
-// }) later when api data is implemented
+const mapActionsToProps = (state) => ({
+    fetchAllWalletData: actions.fetchMyWalletData(state.dispatch),
+});
 
-export default connect(mapStateToProps)(WalletValue);
+export default connect(mapStateToProps, mapActionsToProps)(WalletValue);

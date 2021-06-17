@@ -4,7 +4,7 @@ const initialState = {
     ownedProperties: [
         {
             id: 0,
-            address: "120 Maple Street",
+            address: "SE-12-20-33-W1,",
             stock: 7.78,
             totalWorth: 26500,
             currentPrice: 2540,
