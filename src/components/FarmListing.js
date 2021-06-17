@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FarmListing = ({id,}) => {
-    return (  );
+    return ( null );
 }
  
 export default FarmListing;
