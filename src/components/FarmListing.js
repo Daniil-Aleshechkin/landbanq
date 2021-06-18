@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {
+    createMuiTheme,
+    makeStyles,
+    withStyles,
+} from "@material-ui/core/styles";
 
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
@@ -14,6 +18,8 @@ import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import * as actions from "./../actions/actionCreators";
 import { props } from "bluebird";
+import { green, brown } from "@material-ui/core/colors";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -29,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         color: theme.palette.text.secondary,
     },
-    button: {},
+    button: {
+        marginTop: theme.spacing(2),
+    },
 }));
 
 const Accordion = withStyles({
@@ -51,7 +59,7 @@ const Accordion = withStyles({
 
 const AccordionSummary = withStyles({
     root: {
-        backgroundColor: "rgba(0, 0, 0, .03)",
+        backgroundColor: "rgba(0, 0, 0, 0)",
         borderBottom: "1px solid rgba(0, 0, 0, .125)",
         marginBottom: -1,
         minHeight: 56,
@@ -164,7 +172,7 @@ const FarmListing = (props) => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Button
-                                            variant="contained"
+                                            variant="outlined"
                                             className={classes.button}
                                             fullWidth
                                             onClick={() => {
@@ -175,7 +183,7 @@ const FarmListing = (props) => {
                                             <h3>BUY</h3>
                                         </Button>
                                         <Button
-                                            variant="contained"
+                                            variant="outlined"
                                             className={classes.button}
                                             fullWidth
                                             onClick={() => {

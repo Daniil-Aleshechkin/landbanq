@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
+import Button from "@material-ui/core/Button";
 import * as ApexCharts from "child_process";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import * as actions from "./../actions/actionCreators";
+import { green } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        margin: theme.spacing(2),
     },
     paper: {
         padding: theme.spacing(2),
@@ -366,6 +369,7 @@ const WalletValue = (props) => {
         },
         fill: {
             type: "gradient",
+            colors: green[400],
             gradient: {
                 shadeIntensity: 1,
                 opacityFrom: 0.7,
@@ -427,45 +431,76 @@ const WalletValue = (props) => {
     return (
         <div id="chart">
             <div class="toolbar">
-                <button
+                {/* Could maybe use the active idea with the variant property, but it's not working currently */}
+                <Button
                     id="one_month"
+                    color="primary"
+                    variant="outlined"
                     onClick={() => updateData("one_month")}
-                    className={selection === "one_month" ? "active" : ""}
+                    className={
+                        selection === "one_month"
+                            ? classes.root + " active"
+                            : classes.root
+                    }
                 >
                     1M
-                </button>
+                </Button>
                 &nbsp;
-                <button
+                <Button
                     id="six_months"
+                    color="primary"
+                    variant="outlined"
                     onClick={() => updateData("six_months")}
-                    className={selection === "six_months" ? "active" : ""}
+                    className={
+                        selection === "six_months"
+                            ? classes.root + " active"
+                            : classes.root
+                    }
                 >
                     6M
-                </button>
+                </Button>
                 &nbsp;
-                <button
+                <Button
                     id="one_year"
+                    color="primary"
+                    variant="outlined"
                     onClick={() => updateData("one_year")}
-                    className={selection === "one_year" ? "active" : ""}
+                    className={
+                        selection === "one_year"
+                            ? classes.root + " active"
+                            : classes.root
+                    }
                 >
                     1Y
-                </button>
+                </Button>
                 &nbsp;
-                <button
+                <Button
                     id="ytd"
+                    color="primary"
+                    variant="outlined"
                     onClick={() => updateData("ytd")}
-                    className={selection === "ytd" ? "active" : ""}
+                    className={
+                        selection === "ytd"
+                            ? classes.root + " active"
+                            : classes.root
+                    }
                 >
                     YTD
-                </button>
+                </Button>
                 &nbsp;
-                <button
+                <Button
                     id="all"
+                    color="primary"
+                    variant="outlined"
                     onClick={() => updateData("all")}
-                    className={selection === "all" ? "active" : ""}
+                    className={
+                        selection === "all"
+                            ? classes.root + " active"
+                            : classes.root
+                    }
                 >
                     ALL
-                </button>
+                </Button>
             </div>
             <Paper className={classes.paper}>
                 <div id="chart-timeline">
