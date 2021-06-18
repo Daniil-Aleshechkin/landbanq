@@ -17,10 +17,11 @@ import { props } from "bluebird";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        "& .MuiTextField-root": {
-            margin: theme.spacing(1),
+        "& .MuiTextField-root .MuiAccordionSummary-content": {
+            margin: theme.spacing(2),
             width: "25ch",
         },
+        margin: theme.spacing(2),
     },
     paper: {
         padding: theme.spacing(2),
@@ -28,11 +29,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         color: theme.palette.text.secondary,
     },
-    button: {
-        alignItems: "center",
-        margin: theme.spacing(1),
-        justifyContent: "center",
-    },
+    button: {},
 }));
 
 const Accordion = withStyles({
