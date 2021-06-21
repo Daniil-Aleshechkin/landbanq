@@ -1,7 +1,7 @@
 import * as ACTION_TYPES from "../../actions/actionTypes";
 
-import img1 from "./wm_large.png";
-import img2 from "./Screenshot from 2021-06-17 14-12-11.png";
+import img1 from "./Property-23090354-LargePhoto-1.png";
+import img2 from "./r2532116-1-m.jpg";
 
 const initialState = {
     ownedProperties: [

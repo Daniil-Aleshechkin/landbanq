@@ -150,7 +150,11 @@ const FarmListing = (props) => {
                 <AccordionDetails>
                     <Grid container>
                         <Grid item xs={12} md={6}>
-                            <img src={props.ownedProperty.img} alt="farm" />
+                            <img
+                                width="100%"
+                                src={props.ownedProperty.img}
+                                alt="farm"
+                            />
                         </Grid>
 
                         <Grid item xs={12} md={6}>

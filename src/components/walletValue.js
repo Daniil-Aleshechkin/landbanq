@@ -311,6 +311,7 @@ const WalletValue = (props) => {
         },
     ];
     const options = {
+        colors: [green[400]],
         chart: {
             id: "area-datetime",
             type: "area",
@@ -351,10 +352,14 @@ const WalletValue = (props) => {
             ],
         },
         dataLabels: {
+            style: {
+                color: green[400],
+            },
             enabled: false,
         },
         markers: {
             size: 0,
+            colors: green[400],
             style: "hollow",
         },
         xaxis: {
@@ -510,7 +515,6 @@ const WalletValue = (props) => {
                         type="area"
                         height={350}
                     />
-                    {console.log(props.wallet)}
                 </div>
             </Paper>
         </div>
