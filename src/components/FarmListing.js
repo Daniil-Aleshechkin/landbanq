@@ -114,7 +114,6 @@ const FarmListing = (props) => {
     return (
         <div className={classes.root}>
             <Accordion
-                square
                 expanded={expanded === "panel1"}
                 onChange={handleChange("panel1")}
             >
@@ -150,11 +149,20 @@ const FarmListing = (props) => {
                 <AccordionDetails>
                     <Grid container>
                         <Grid item xs={12} md={6}>
-                            <img
+                            {/* Propably will change this using material UI styles */}
+                            <div
+                                style={{
+                                    backgroundImage:
+                                        "url(" + props.ownedProperty.img + ")",
+                                    width: "100%",
+                                    height: "100%",
+                                }}
+                            ></div>
+                            {/* <img
                                 width="100%"
                                 src={props.ownedProperty.img}
                                 alt="farm"
-                            />
+                            /> */}
                         </Grid>
 
                         <Grid item xs={12} md={6}>
